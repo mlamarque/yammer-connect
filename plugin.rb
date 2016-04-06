@@ -20,13 +20,14 @@ class YammerAuthenticator < ::Auth::Authenticator
     # plugin specific data storage
     current_info = ::PluginStore.get("yammer", "yammer_uid_#{yammer_uid}")
 
+
     result.user =
       if current_info
         user = User.where(id: current_info[:user_id]).first
       end
     result.email = data["email"]
     result.name = name
-    result.extra_data = { yammer_uid: yammer_uid }
+    result.extra_data = { yammer_uid: yammer_uid, picture: data["image"] }
     result
   end
 
@@ -35,17 +36,11 @@ class YammerAuthenticator < ::Auth::Authenticator
     # deactivate/activate it's fix to disable confiramtion mail after creation 
     user.deactivate
     user.activate
-    p "----///----"*10
-    p data
-    p auth
-    p "----///----"*15
     if user
-      user.uploaded_avatar_id = UserAvatar.import_url_for_user("https://mug0.assets-yammer.com/mugshot/images/48x48/RMJxzH6k99bsMGd-FbhjdnPNKgXqQ6QW", user)
+      user.uploaded_avatar_id = UserAvatar.import_url_for_user(data[:picture], user)
        user.save
     end
     user
-    
-    
     user.save
     ::PluginStore.set("yammer", "yammer_uid_#{data[:yammer_uid]}", {user_id: user.id })
   end
