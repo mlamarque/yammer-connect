@@ -1,0 +1,5 @@
+login:
+  yammer_client_id:
+    default: ''
+  yammer_client_secret:
+    default: ''
