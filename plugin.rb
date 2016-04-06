@@ -1,6 +1,6 @@
 # name: Yammer Connect
-# about: Authenticate with discourse with yammer, see more at: https://vk.com/developers.php?id=-1_37230422&s=1
-# version: 0.1.0
+# about: Authenticate with discourse with yammer
+# version: 1.0
 # author: Matthieu Lamarque
 
 class YammerAuthenticator < ::Auth::Authenticator
