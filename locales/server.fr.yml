@@ -1,0 +1,4 @@
+fr:
+  site_settings:
+    yammer_client_id: "Client id for Yammer authentication, registered at http://yammer.com/"
+    yammer_client_secret: "Client secret for Yammer authentication, registered at http://yammer.com/"
